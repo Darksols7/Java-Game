@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.Blocks;
+import game.ZoeyARaposa.Blocks;
 
 public class World {
 
@@ -31,10 +31,10 @@ public class World {
         for(int i = 0; i < blocos.size(); i++){
             Blocks blocoAtual = blocos.get(i);
             if(blocoAtual.intersects(new Rectangle(x,y,32,32))){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void render(Graphics g){

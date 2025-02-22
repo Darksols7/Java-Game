@@ -19,7 +19,7 @@ public class Main extends Canvas implements Runnable, KeyListener {
         this.addKeyListener(this);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        player = new Player(50, 50);
+        player = new Player(500, 500);
         world = new World();
 
     }
@@ -80,7 +80,6 @@ public class Main extends Canvas implements Runnable, KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
         if(e.getKeyCode() == KeyEvent.VK_D){
             player.right = true;
         }else if(e.getKeyCode() == KeyEvent.VK_A){
@@ -98,7 +97,6 @@ public class Main extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
         if(e.getKeyCode() == KeyEvent.VK_D){
             player.right = false;
         }else if(e.getKeyCode() == KeyEvent.VK_A){

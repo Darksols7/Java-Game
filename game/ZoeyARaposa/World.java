@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.ZoeyARaposa.Blocks;
+//import game.ZoeyARaposa.Blocks;
 
 public class World {
 

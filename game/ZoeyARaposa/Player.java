@@ -41,8 +41,7 @@ public class Player extends Rectangle {
         }
 
         if (isDashing && !right && !left && !up && !down) {
-            x += lastDirectionX * currentSpd;
-            y += lastDirectionY * currentSpd;
+            moveWithCollision(lastDirectionX * currentSpd, lastDirectionY * currentSpd);
         }
 
         if(isDashing){
@@ -52,6 +51,31 @@ public class Player extends Rectangle {
             }
         }
 
+    }
+
+    private void moveWithCollision(int dx, int dy){
+        int stepX = dx < 0 ? -1 : 1; 
+        int stepY = dy < 0 ? -1 : 1; 
+        int absDx = Math.abs(dx); 
+        int absDy = Math.abs(dy); 
+    
+
+    for(int i = 0; i < absDx; i++){
+        int nextX = x + stepX;
+        if(World.isFree(nextX, y)){
+            x = nextX;
+        }else{
+            break;
+          }
+        }
+        for(int i = 0; i < absDy; i++){
+            int nextY = y + stepY;
+            if(World.isFree(x, nextY)){
+                x = nextY;
+            }else{
+                break;
+              }
+            }
     }
 
     public void startDash(){
@@ -68,3 +92,4 @@ public class Player extends Rectangle {
     }
 
 }
+

@@ -1,6 +1,7 @@
 package game.ZoeyARaposa;
 
 //import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -11,35 +12,67 @@ public class Player extends Rectangle {
     private int dashTime = 0; 
     public boolean right, up, down, left;
     public boolean isDashing = false;
+    public int right_dir = 0, left_dir = 1;
+    public int dir = right_dir;
     private int lastDirectionX = 0;
     private int lastDirectionY = 0;
 
+    private int frames = 0, nextFrames = 5, index = 0, maxIndex = 1;
+    private boolean moved = false;
+    private BufferedImage[] rightPlayer;
+    private BufferedImage[] leftPlayer;
+
     public Player(int x, int y){
         super(x,y,32,32);
+
+        rightPlayer = new BufferedImage[2];
+        leftPlayer = new BufferedImage[2];
+        rightPlayer[0] = Spritesheet.getSprite(96, 0, 32, 32); // Direita Caminhada 1
+        rightPlayer[1] = Spritesheet.getSprite(128, 0, 32, 32); // Direita Caminhada 2
+        leftPlayer[0] = Spritesheet.getSprite(160, 0, 32, 32); // Esquerda Caminhada 1
+        leftPlayer[1] = Spritesheet.getSprite(192, 0, 32, 32); // Esquerda Caminhada 2
     }
 
     public void tick(){
         int currentSpd = isDashing ? dashSpd : spd;
 
         if (right || left || up || down || (isDashing && (lastDirectionX != 0 || lastDirectionY != 0))) {
+            moved = false;
             int dx = 0, dy = 0;
             if (right) {
+                moved = true;
+                dir = right_dir;
                 dx = currentSpd;
                 lastDirectionX = 1;
                 lastDirectionY = 0;
             } else if (left) {
+                moved = true;
+                dir = left_dir;
                 dx = -currentSpd;
                 lastDirectionX = -1;
                 lastDirectionY = 0;
             }
             if (up) {
+                moved = true;
                 dy = -currentSpd;
                 lastDirectionX = 0;
                 lastDirectionY = -1;
             } else if (down) {
+                moved = true;
                 dy = currentSpd;
                 lastDirectionX = 0;
                 lastDirectionY = 1;
+            }
+
+            if(moved){
+                frames++;
+                if(frames == nextFrames){
+                    frames = 0;
+                    index++;
+                    if(index > maxIndex){
+                        index = 0;
+                    }
+                }
             }
             // Para o dash, usa a última direção
             if (isDashing && !right && !left && !up && !down) {
@@ -117,7 +150,11 @@ public class Player extends Rectangle {
     public void render(Graphics g){
         //g.setColor(Color.blue);
         //g.fillRect(x, y, width, height);
-        g.drawImage(Spritesheet.player_front, x, y,32,32,null);
+        if(dir == right_dir){
+        g.drawImage(rightPlayer[index], x, y,32,32,null);
+        }else if(dir == left_dir){
+        g.drawImage(leftPlayer[index], x, y,32,32,null);
+        }
     }
 
 }

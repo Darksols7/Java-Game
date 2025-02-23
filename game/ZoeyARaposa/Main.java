@@ -18,7 +18,7 @@ public class Main extends Canvas implements Runnable, KeyListener {
     public Main(){
         this.addKeyListener(this);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
+        new Spritesheet();
         player = new Player(500, 500);
         world = new World();
 
@@ -114,7 +114,6 @@ public class Main extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
         
     }
 

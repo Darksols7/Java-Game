@@ -39,10 +39,10 @@ public class Main extends Canvas implements Runnable, KeyListener {
 
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
+        
+        world.render(g);
 
         player.render(g);
-
-        world.render(g);
 
         bs.show();
 

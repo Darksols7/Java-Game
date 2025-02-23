@@ -9,9 +9,15 @@ import java.util.List;
 
 public class World {
 
+    public static List <Ground> groundTiles = new ArrayList<Ground>();
     public static List <Blocks> blocos = new ArrayList<Blocks>();
 
     public World(){
+        for(int xx = 0; xx < 25; xx++){
+            for(int yy = 0; yy < 25; yy++){
+                groundTiles.add(new Ground(xx*32,yy*32));
+            }
+        }
         for(int xx = 0; xx < 25; xx++){
             blocos.add(new Blocks(xx*32,0));
         }
@@ -38,6 +44,9 @@ public class World {
     }
 
     public void render(Graphics g){
+        for(Ground ground : groundTiles){
+            ground.render(g);
+        }
         for(int i = 0; i < blocos.size(); i++){
             blocos.get(i).render(g);
         }

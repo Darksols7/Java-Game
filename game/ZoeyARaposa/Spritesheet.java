@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class Spritesheet {
 
     public static BufferedImage spritesheet;
-
+    public static BufferedImage tileWall;
     public static BufferedImage player_front;
 
     public Spritesheet(){
@@ -19,6 +19,7 @@ public class Spritesheet {
         }
 
         player_front = Spritesheet.getSprite(64, 0, 32, 32);
+        tileWall = Spritesheet.getSprite(32, 0, 32, 32);
     }
 
     public static BufferedImage getSprite(int x, int y, int width, int height){

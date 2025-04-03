@@ -12,7 +12,7 @@ public class Player extends Rectangle {
     private int dashTime = 0; 
     public boolean right, up, down, left;
     public boolean isDashing = false;
-    public int right_dir = 0, left_dir = 1;
+    public int right_dir = 0, left_dir = 1, up_dir = 2, down_dir = 3;
     public int dir = right_dir;
     private int lastDirectionX = 0;
     private int lastDirectionY = 0;
@@ -21,16 +21,25 @@ public class Player extends Rectangle {
     private boolean moved = false;
     private BufferedImage[] rightPlayer;
     private BufferedImage[] leftPlayer;
+    private BufferedImage[] upPlayer;
+    private BufferedImage[] downPlayer;
 
     public Player(int x, int y){
         super(x,y,32,32);
 
         rightPlayer = new BufferedImage[2];
         leftPlayer = new BufferedImage[2];
+        upPlayer = new BufferedImage[2];
+        downPlayer = new BufferedImage[2];
+
         rightPlayer[0] = Spritesheet.getSprite(96, 0, 32, 32); // Direita Caminhada 1
         rightPlayer[1] = Spritesheet.getSprite(128, 0, 32, 32); // Direita Caminhada 2
         leftPlayer[0] = Spritesheet.getSprite(160, 0, 32, 32); // Esquerda Caminhada 1
         leftPlayer[1] = Spritesheet.getSprite(192, 0, 32, 32); // Esquerda Caminhada 2
+        upPlayer[0] = Spritesheet.getSprite(288, 0, 32, 32); // Cima Caminhada 1
+        upPlayer[1] = Spritesheet.getSprite(256, 0, 32, 32); // Cima Caminhada 2
+        downPlayer[0] = Spritesheet.getSprite(192, 32, 32, 32); // Baixo Caminhada 1
+        downPlayer[1] = Spritesheet.getSprite(224, 32, 32, 32); // Baixo Caminhada 2
     }
 
     public void tick(){
@@ -54,11 +63,13 @@ public class Player extends Rectangle {
             }
             if (up) {
                 moved = true;
+                dir = up_dir;
                 dy = -currentSpd;
                 lastDirectionX = 0;
                 lastDirectionY = -1;
             } else if (down) {
                 moved = true;
+                dir = down_dir;
                 dy = currentSpd;
                 lastDirectionX = 0;
                 lastDirectionY = 1;
@@ -148,12 +159,14 @@ public class Player extends Rectangle {
     }
 
     public void render(Graphics g){
-        //g.setColor(Color.blue);
-        //g.fillRect(x, y, width, height);
         if(dir == right_dir){
-        g.drawImage(rightPlayer[index], x, y,32,32,null);
-        }else if(dir == left_dir){
-        g.drawImage(leftPlayer[index], x, y,32,32,null);
+            g.drawImage(rightPlayer[index], x, y, 32, 32, null);
+        } else if(dir == left_dir){
+            g.drawImage(leftPlayer[index], x, y, 32, 32, null);
+        } else if(dir == up_dir){
+            g.drawImage(upPlayer[index], x, y, 32, 32, null);
+        } else if(dir == down_dir){
+            g.drawImage(downPlayer[index], x, y, 32, 32, null);
         }
     }
 

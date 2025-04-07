@@ -23,6 +23,11 @@ public class Player extends Rectangle {
     private BufferedImage[] leftPlayer;
     private BufferedImage[] upPlayer;
     private BufferedImage[] downPlayer;
+    // Arrays para animações do dash
+    private BufferedImage[] rightDash;
+    private BufferedImage[] leftDash;
+    private BufferedImage[] upDash;
+    private BufferedImage[] downDash;
 
     public Player(int x, int y){
         super(x,y,32,32);
@@ -31,6 +36,10 @@ public class Player extends Rectangle {
         leftPlayer = new BufferedImage[2];
         upPlayer = new BufferedImage[2];
         downPlayer = new BufferedImage[2];
+        rightDash = new BufferedImage[2];
+        leftDash = new BufferedImage[2];
+        upDash = new BufferedImage[2];
+        downDash = new BufferedImage[2];
 
         rightPlayer[0] = Spritesheet.getSprite(96, 0, 32, 32); // Direita Caminhada 1
         rightPlayer[1] = Spritesheet.getSprite(128, 0, 32, 32); // Direita Caminhada 2
@@ -40,6 +49,16 @@ public class Player extends Rectangle {
         upPlayer[1] = Spritesheet.getSprite(256, 0, 32, 32); // Cima Caminhada 2
         downPlayer[0] = Spritesheet.getSprite(192, 32, 32, 32); // Baixo Caminhada 1
         downPlayer[1] = Spritesheet.getSprite(224, 32, 32, 32); // Baixo Caminhada 2
+
+        // Sprites do dash (substitua w,x,y,z pelos valores corretos da sua spritesheet)
+        rightDash[0] = Spritesheet.getSprite(64, 32, 32, 32);
+        rightDash[1] = Spritesheet.getSprite(64, 32, 32, 32);
+        leftDash[0] = Spritesheet.getSprite(97, 32, 32, 32);
+        leftDash[1] = Spritesheet.getSprite(97, 32, 32, 32);
+        upDash[0] = Spritesheet.getSprite(159, 32, 32, 32);
+        upDash[1] = Spritesheet.getSprite(159, 32, 32, 32);
+        downDash[0] = Spritesheet.getSprite(127, 32, 32, 32);
+        downDash[1] = Spritesheet.getSprite(127, 32, 32, 32);
     }
 
     public void tick(){
@@ -159,14 +178,28 @@ public class Player extends Rectangle {
     }
 
     public void render(Graphics g){
-        if(dir == right_dir){
-            g.drawImage(rightPlayer[index], x, y, 32, 32, null);
-        } else if(dir == left_dir){
-            g.drawImage(leftPlayer[index], x, y, 32, 32, null);
-        } else if(dir == up_dir){
-            g.drawImage(upPlayer[index], x, y, 32, 32, null);
-        } else if(dir == down_dir){
-            g.drawImage(downPlayer[index], x, y, 32, 32, null);
+        if(isDashing) {
+            // Prioridade para animações horizontais durante o dash
+            if(lastDirectionX > 0 || (right && !left)) {
+                g.drawImage(rightDash[index], x, y, 32, 32, null);
+            } else if(lastDirectionX < 0 || (left && !right)) {
+                g.drawImage(leftDash[index], x, y, 32, 32, null);
+            } else if(lastDirectionY < 0 || (up && !down)) {
+                g.drawImage(upDash[index], x, y, 32, 32, null);
+            } else if(lastDirectionY > 0 || (down && !up)) {
+                g.drawImage(downDash[index], x, y, 32, 32, null);
+            }
+        } else {
+            // Animações normais de movimento
+            if(dir == right_dir){
+                g.drawImage(rightPlayer[index], x, y, 32, 32, null);
+            } else if(dir == left_dir){
+                g.drawImage(leftPlayer[index], x, y, 32, 32, null);
+            } else if(dir == up_dir){
+                g.drawImage(upPlayer[index], x, y, 32, 32, null);
+            } else if(dir == down_dir){
+                g.drawImage(downPlayer[index], x, y, 32, 32, null);
+            }
         }
     }
 

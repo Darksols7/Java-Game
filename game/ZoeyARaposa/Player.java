@@ -104,6 +104,8 @@ public class Player extends Rectangle {
                         index = 0;
                     }
                 }
+                Camera.x = x - (Main.WIDTH/2);
+                Camera.y = y - (Main.HEIGHT/2);
             }
             // Para o dash, usa a última direção
             if (isDashing && !right && !left && !up && !down) {
@@ -182,24 +184,24 @@ public class Player extends Rectangle {
         if(isDashing) {
             // Prioridade para animações horizontais durante o dash
             if(lastDirectionX > 0 || (right && !left)) {
-                g.drawImage(rightDash[index], x, y, 32, 32, null);
+                g.drawImage(rightDash[index], x - Camera.x, y - Camera.y, 32, 32, null);
             } else if(lastDirectionX < 0 || (left && !right)) {
-                g.drawImage(leftDash[index], x, y, 32, 32, null);
+                g.drawImage(leftDash[index], x - Camera.x, y - Camera.y, 32, 32, null);
             } else if(lastDirectionY < 0 || (up && !down)) {
-                g.drawImage(upDash[index], x, y, 32, 32, null);
+                g.drawImage(upDash[index], x - Camera.x, y - Camera.y, 32, 32, null);
             } else if(lastDirectionY > 0 || (down && !up)) {
-                g.drawImage(downDash[index], x, y, 32, 32, null);
+                g.drawImage(downDash[index], x - Camera.x, y - Camera.y, 32, 32, null);
             }
         } else {
             // Animações normais de movimento
             if(dir == right_dir){
-                g.drawImage(rightPlayer[index], x, y, 32, 32, null);
+                g.drawImage(rightPlayer[index], x - Camera.x, y - Camera.y, 32, 32, null);
             } else if(dir == left_dir){
-                g.drawImage(leftPlayer[index], x, y, 32, 32, null);
+                g.drawImage(leftPlayer[index], x - Camera.x, y - Camera.y, 32, 32, null);
             } else if(dir == up_dir){
-                g.drawImage(upPlayer[index], x, y, 32, 32, null);
+                g.drawImage(upPlayer[index], x - Camera.x, y - Camera.y, 32, 32, null);
             } else if(dir == down_dir){
-                g.drawImage(downPlayer[index], x, y, 32, 32, null);
+                g.drawImage(downPlayer[index], x - Camera.x, y - Camera.y, 32, 32, null);
             }
         }
     }

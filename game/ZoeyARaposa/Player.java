@@ -41,6 +41,7 @@ public class Player extends Rectangle {
         upDash = new BufferedImage[2];
         downDash = new BufferedImage[2];
 
+        // Sprites animação normal
         rightPlayer[0] = Spritesheet.getSprite(96, 0, 32, 32); // Direita Caminhada 1
         rightPlayer[1] = Spritesheet.getSprite(128, 0, 32, 32); // Direita Caminhada 2
         leftPlayer[0] = Spritesheet.getSprite(160, 0, 32, 32); // Esquerda Caminhada 1
@@ -50,7 +51,7 @@ public class Player extends Rectangle {
         downPlayer[0] = Spritesheet.getSprite(192, 32, 32, 32); // Baixo Caminhada 1
         downPlayer[1] = Spritesheet.getSprite(224, 32, 32, 32); // Baixo Caminhada 2
 
-        // Sprites do dash (substitua w,x,y,z pelos valores corretos da sua spritesheet)
+        // Sprites do dash
         rightDash[0] = Spritesheet.getSprite(64, 32, 32, 32);
         rightDash[1] = Spritesheet.getSprite(64, 32, 32, 32);
         leftDash[0] = Spritesheet.getSprite(97, 32, 32, 32);

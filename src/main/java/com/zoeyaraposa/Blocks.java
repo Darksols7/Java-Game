@@ -15,7 +15,7 @@ public class Blocks extends Rectangle {
         //g.fillRect(x,y,width,height);
         //g.setColor(Color.black);
         //g.drawRect(x,y,width,height);
-        g.drawImage(Spritesheet.tileWall, x, y,32,32,null);
+        g.drawImage(Spritesheet.tileWall, x - Camera.x, y - Camera.y,32,32,null);
     }
 
 }

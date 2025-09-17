@@ -1,4 +1,4 @@
-package game.ZoeyARaposa;
+package com.zoeyaraposa;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

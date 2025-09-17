@@ -1,12 +1,12 @@
-package game.ZoeyARaposa;
+package com.zoeyaraposa;
 
 //import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Blocks extends Rectangle {
+public class Ground extends Rectangle {
 
-    public Blocks(int x, int y){
+    public Ground(int x, int y){
         super(x,y,32,32);
     }
 
@@ -15,7 +15,7 @@ public class Blocks extends Rectangle {
         //g.fillRect(x,y,width,height);
         //g.setColor(Color.black);
         //g.drawRect(x,y,width,height);
-        g.drawImage(Spritesheet.tileWall, x - Camera.x, y - Camera.y,32,32,null);
+        g.drawImage(Spritesheet.grassTiles, x - Camera.x, y - Camera.y,32,32,null);
     }
 
 }

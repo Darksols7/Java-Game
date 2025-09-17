@@ -1,4 +1,4 @@
-package game.ZoeyARaposa;
+package com.zoeyaraposa;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;

@@ -1,4 +1,4 @@
-package game.ZoeyARaposa;
+package com.zoeyaraposa;
 
 public class Camera {
 

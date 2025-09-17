@@ -66,17 +66,28 @@ public class Main extends Canvas implements Runnable, KeyListener {
     }
     @Override
     public void run() {
-        
+        long lastTime = System.nanoTime();
+        double amountOfTicks = 60.0;
+        double ns = 1000000000 / amountOfTicks;
+        double delta = 0;
+        int frames = 0;
+        double timer = System.currentTimeMillis();
         while (true) {
-            System.out.println("Loop!");
-            tick();
-            render();
-            try{
-                Thread.sleep(1000/60);
-        } catch(InterruptedException e){
-            e.printStackTrace();
-        }
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            if(delta >= 1){
+                tick();
+                render();
+                frames++;
+                delta--;
+            }
 
+            if(System.currentTimeMillis() - timer >= 1000){
+                System.out.println("FPS:" + frames);
+                frames = 0;
+                timer+=1000;
+            }
       }
     }
 

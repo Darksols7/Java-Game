@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Player extends Rectangle {
-    public int spd = 6; 
-    private int dashSpd = 14; 
+    public int spd = 3; 
+    private int dashSpd = 8; 
     private int dashDuration = 10; 
     private int dashTime = 0; 
     public boolean right, up, down, left;

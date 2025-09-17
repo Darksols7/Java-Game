@@ -1,4 +1,4 @@
-package game.ZoeyARaposa;
+package com.zoeyaraposa;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

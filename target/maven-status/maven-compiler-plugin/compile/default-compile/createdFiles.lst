@@ -3,4 +3,5 @@ com\zoeyaraposa\Ground.class
 com\zoeyaraposa\World.class
 com\zoeyaraposa\Main.class
 com\zoeyaraposa\Player.class
+com\zoeyaraposa\Camera.class
 com\zoeyaraposa\Blocks.class

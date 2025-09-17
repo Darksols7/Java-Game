@@ -14,17 +14,6 @@
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>graficos</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
-
     <dependencies>
         <!-- Dependências do projeto (caso precise) -->
     </dependencies>
